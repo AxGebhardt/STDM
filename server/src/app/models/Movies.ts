@@ -1,32 +1,33 @@
-import { release } from "os";
-import { DataTypes, Model, Optional } from "sequelize";
+
+import { Table, Column, Model, HasMany } from 'sequelize-typescript'
 import sequelizeConnection from "./config";
 
-interface MovieAttributes {
-    id: number;
-    name: string;
+@Table
+export class Movie extends Model {
+    
+    @Column
+    id: number
+
+    @Column
+    name: string
+    
+    @Column
     description: string;
-    rating?: number;
-    released: boolean;
-    createdAt?: Date;
-    updatesAt?: Date;
-    deletedAt?: Date;
-}
+    
+    @Column
+    rating: number;
+    
+    @Column
+    releaseYear: Date;
 
-export interface MovieInput extends Optional<MovieAttributes, 'id'> {}
-export interface MovieOutput extends Required<MovieAttributes> {}
+    @Column
+    createdAt: Date;
+    
+    @Column
+    updatedAt: Date;
 
-class Movie extends Model<MovieAttributes, MovieInput> implements MovieAttributes {
-    public id!: number
-    public name!: string
-    public description!: string;
-    public rating!: number;
-    public released!: boolean;
-
-    //timestamps
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public readonly deletedAt!: Date;
+    @Column
+    deletedAt: Date;
 }
 
 Movie.init({

@@ -1,7 +1,7 @@
 import { dbConfig } from '../config/db.config';
-import { Sequelize, OperatorsAliases } from 'sequelize';
+import { Sequelize, OperatorsAliases } from 'sequelize-typescript';
 
-const sequelizeConnection: Sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+const sequelize: Sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     port: dbConfig.PORT,
     dialect: dbConfig.dialect,
@@ -14,4 +14,11 @@ const sequelizeConnection: Sequelize = new Sequelize(dbConfig.DB, dbConfig.USER,
     }
 });
 
-export default sequelizeConnection;
+sequelize.add
+sequelize.addModels([Tasks]);
+
+const db: any = {};
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+return db;
