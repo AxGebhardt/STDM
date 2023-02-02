@@ -1,3 +1,4 @@
+"use strict";
 /*
 export class MovieController {
 
@@ -25,4 +26,4 @@ export class MovieController {
         return await this.taskService.deleteTask(taskId);
     }
 }
-*/
+*/ 

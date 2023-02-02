@@ -1,4 +1,4 @@
-import Movie from './models/Movies';
+import Movie from './models/movies.model';
 require('dotenv').config();
 
 const isDev = process.env.NODE_ENV === 'development';

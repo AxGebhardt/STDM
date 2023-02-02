@@ -1,24 +1,30 @@
 import { dbConfig } from '../config/db.config';
-import { Sequelize, OperatorsAliases } from 'sequelize-typescript';
+import { Sequelize } from 'sequelize-typescript';
+import Movie from './movies.model';
 
-const sequelize: Sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-    host: dbConfig.HOST,
-    port: dbConfig.PORT,
-    dialect: dbConfig.dialect,
+/* export const connect = () => {*/
 
-    pool: {
-        max: dbConfig.pool.max,
-        min: dbConfig.pool.min,
-        acquire: dbConfig.pool.acquire,
-        idle: dbConfig.pool.idle
-    }
-});
+    const connection: Sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+        host: dbConfig.HOST,
+        port: dbConfig.PORT,
+        dialect: dbConfig.dialect,
+        models: [Movie],
 
-sequelize.add
-sequelize.addModels([Tasks]);
+        pool: {
+            max: dbConfig.pool.max,
+            min: dbConfig.pool.min,
+            acquire: dbConfig.pool.acquire,
+            idle: dbConfig.pool.idle
+        }
+    });
 
-const db: any = {};
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+    export default connection;
+    /*
+    sequelize.addModels([Movie]);
 
-return db;
+    const db: any = {};
+    db.Sequelize = Sequelize;
+    db.sequelize = sequelize;
+
+    return db;
+}*/

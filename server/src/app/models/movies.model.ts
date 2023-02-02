@@ -1,35 +1,40 @@
 
-import { Table, Column, Model, HasMany } from 'sequelize-typescript'
+import { Table, Column, Model, HasMany, PrimaryKey, CreatedAt, UpdatedAt, DeletedAt, DataType, AutoIncrement } from 'sequelize-typescript'
 import sequelizeConnection from "./config";
 
-@Table
+@Table({
+    timestamps: true,
+})
 export class Movie extends Model {
     
+    @PrimaryKey
+    @AutoIncrement
     @Column
-    id: number
+    id!: number;
 
-    @Column
-    name: string
+    @Column(DataType.STRING)
+    name!: string
+    
+    @Column(DataType.TEXT)
+    description!: string;
+    
+    @Column(DataType.DECIMAL)
+    rating!: number;
     
     @Column
-    description: string;
-    
-    @Column
-    rating: number;
-    
-    @Column
-    releaseYear: Date;
+    releaseDate!: Date;
 
-    @Column
-    createdAt: Date;
+    @CreatedAt
+    createdAt!: Date;
     
-    @Column
-    updatedAt: Date;
+    @UpdatedAt
+    updatedAt!: Date;
 
-    @Column
-    deletedAt: Date;
+    @DeletedAt
+    deletedAt!: Date;
 }
 
+/* Nicht benötigt?
 Movie.init({
     id: {
         type: DataTypes.INTEGER,
@@ -55,5 +60,5 @@ Movie.init({
     sequelize: sequelizeConnection,
     paranoid: true
 })
-
+*/
 export default Movie

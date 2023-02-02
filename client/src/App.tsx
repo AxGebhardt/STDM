@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Movie from './shared/movieModel';
 import MovieCard from './components/MovieCard';
