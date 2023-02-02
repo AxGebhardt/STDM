@@ -1,9 +1,10 @@
-import React from 'react';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+//import './App.css';
 import Movie from './shared/movieModel';
 import MovieCard from './components/MovieCard';
 import Grid from '@mui/material/Grid';
-import axios from 'axios';
+import http from './shared/http-common';
+import MovieResponse from './shared/movieResponse';
 
 function App() {
 
@@ -23,23 +24,42 @@ function App() {
     releaseYear: 2019
   }
 
-  let movies: Movie[] = [];
+  const [movies, setMovies] = useState<Movie[]>([]);
 
-  axios.get<Movie>('localhost:8000/movies').then(res => {
-    movies.fill(res);
-  })
+  useEffect(() => {
+    http.get<MovieResponse[]>('/movies').then(res => {
+      console.log(res.data);
+      const movieResponse: MovieResponse[] = res.data;
 
+      const movieData: Movie[] = movieResponse.map(movieResponse => ({
+        movieName: movieResponse.name,
+        movieDescription: movieResponse.description,
+        moviePictureURL: movieResponse.movieURL,
+        rating: +movieResponse.rating,
+        releaseYear: movieResponse.releaseYear
+      }))
+
+      console.log('MovieData:', movieData);
+      //movies.push(res.data);
+      setMovies(movieData);
+    }).catch(err => {
+      console.log(err);
+    })
+  },[])
+
+  /*
   for (let index = 0; index < 35; index++) {
     movies.push(spiderMovie);
     movies.push(avengersEndgame);
   }
+  */
 
   return (
-    <Grid className="App" container spacing={6}>
+    <Grid className="App" container spacing={4}>
 
       {movies.map((element, index) => {
         return (
-          <Grid item key={index}>
+          <Grid item key={index} xs={12} md={6} xl={3}>
               <MovieCard 
                 movieName={element.movieName} 
                 movieDescription={element.movieDescription} 

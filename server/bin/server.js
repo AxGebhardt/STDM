@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 8080;
 const app = (0, express_1.default)();
 (0, init_1.default)();
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:3000"
 };
 app.use((0, cors_1.default)(corsOptions));
 // parse requests of content-type - application/json
