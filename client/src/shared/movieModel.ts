@@ -3,5 +3,5 @@ export default interface Movie {
     movieDescription: string;
     moviePictureURL: string;
     rating: number;
-    releaseYear: Date;
+    releaseYear: number;
 }

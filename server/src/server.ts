@@ -4,6 +4,7 @@ import dbInit from './app/init';
 import "reflect-metadata";
 import connection from './app/models/config'
 import Movie from './app/models/movies.model';
+import { testMovies } from './data/testMovies';
 
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
@@ -63,6 +64,11 @@ app.delete("/movie/:id", async (req: Request, res: Response): Promise<Response> 
 const start = async (): Promise<void> => {
   try {
     await connection.sync({ force: true });
+
+    testMovies.forEach(element => {
+      Movie.create(element);
+    });
+
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}.`);
     });

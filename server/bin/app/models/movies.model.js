@@ -28,13 +28,17 @@ __decorate([
     __metadata("design:type", String)
 ], Movie.prototype, "description", void 0);
 __decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Movie.prototype, "movieURL", void 0);
+__decorate([
     (0, sequelize_typescript_1.Column)(sequelize_typescript_1.DataType.DECIMAL),
     __metadata("design:type", Number)
 ], Movie.prototype, "rating", void 0);
 __decorate([
     sequelize_typescript_1.Column,
-    __metadata("design:type", Date)
-], Movie.prototype, "releaseDate", void 0);
+    __metadata("design:type", Number)
+], Movie.prototype, "releaseYear", void 0);
 __decorate([
     sequelize_typescript_1.CreatedAt,
     __metadata("design:type", Date)

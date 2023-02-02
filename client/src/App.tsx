@@ -3,6 +3,7 @@ import './App.css';
 import Movie from './shared/movieModel';
 import MovieCard from './components/MovieCard';
 import Grid from '@mui/material/Grid';
+import axios from 'axios';
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
     movieDescription: 'Ein guter Film',
     moviePictureURL: 'https://i.etsystatic.com/22985714/r/il/e23732/3807163725/il_570xN.3807163725_cuy8.jpg',
     rating: 4.0,
-    releaseYear: new Date("2019-01-16")
+    releaseYear: 2019
   }
 
   const avengersEndgame: Movie = {
@@ -19,13 +20,14 @@ function App() {
     movieDescription: 'Ein anderer guter Film',
     moviePictureURL: 'https://lumiere-a.akamaihd.net/v1/images/p_avengersendgame_19751_e14a0104.jpeg?region=0%2C0%2C540%2C810',
     rating: 4.5,
-    releaseYear: new Date("2019-06-16")
+    releaseYear: 2019
   }
 
-  let movies: Movie[] = [
-    spiderMovie,
-    avengersEndgame
-  ]
+  let movies: Movie[] = [];
+
+  axios.get<Movie>('localhost:8000/movies').then(res => {
+    movies.fill(res);
+  })
 
   for (let index = 0; index < 35; index++) {
     movies.push(spiderMovie);

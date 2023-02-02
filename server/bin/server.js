@@ -18,6 +18,7 @@ const init_1 = __importDefault(require("./app/init"));
 require("reflect-metadata");
 const config_1 = __importDefault(require("./app/models/config"));
 const movies_model_1 = __importDefault(require("./app/models/movies.model"));
+const testMovies_1 = require("./data/testMovies");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -62,7 +63,10 @@ app.delete("/movie/:id", (req, res) => __awaiter(void 0, void 0, void 0, functio
 // Start express server and sync db
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield config_1.default.sync({ alter: true });
+        yield config_1.default.sync({ force: true });
+        testMovies_1.testMovies.forEach(element => {
+            movies_model_1.default.create(element);
+        });
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}.`);
         });
