@@ -62,7 +62,7 @@ app.delete("/movie/:id", async (req: Request, res: Response): Promise<Response> 
 // Start express server and sync db
 const start = async (): Promise<void> => {
   try {
-    await connection.sync({force: true});
+    await connection.sync({ force: true });
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}.`);
     });

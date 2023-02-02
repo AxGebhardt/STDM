@@ -62,7 +62,7 @@ app.delete("/movie/:id", (req, res) => __awaiter(void 0, void 0, void 0, functio
 // Start express server and sync db
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield config_1.default.sync({ force: true });
+        yield config_1.default.sync({ alter: true });
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}.`);
         });

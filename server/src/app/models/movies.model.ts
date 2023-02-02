@@ -18,11 +18,14 @@ export class Movie extends Model {
     @Column(DataType.TEXT)
     description!: string;
     
+    @Column
+    movieURL!: string;
+
     @Column(DataType.DECIMAL)
     rating!: number;
     
     @Column
-    releaseDate!: Date;
+    releaseYear!: number;
 
     @CreatedAt
     createdAt!: Date;
