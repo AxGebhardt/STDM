@@ -60,6 +60,16 @@ app.delete("/movie/:id", async (req: Request, res: Response): Promise<Response> 
   }
 );
 
+//Get last Movie
+app.get("/lastMovie", async (req: Request, res: Response): Promise<Response> => {
+  const lastMovie: Movie | null = await Movie.findOne({
+    order: [['createdAt', 'DESC']]
+  });
+  console.log(lastMovie);
+  return res.status(200).json(lastMovie);
+}
+);
+
 // Start express server and sync db
 const start = async (): Promise<void> => {
   try {

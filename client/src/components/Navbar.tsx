@@ -6,9 +6,20 @@ import Container from '@mui/material/Container';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import AddMovie from './AddMovie';
 
 function Navbar() {
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="sticky">
@@ -52,10 +63,12 @@ function Navbar() {
           >
             FilmDB
           </Typography>
-          <Button color="inherit">Hinzufügen</Button>
+          <Button color="inherit" onClick={handleClickOpen}>Hinzufügen</Button>
         </Toolbar>
       </Container>
     </AppBar>
+
+    <AddMovie show={open} close={() => setOpen(false)}/>
     </Box>
   );
 }

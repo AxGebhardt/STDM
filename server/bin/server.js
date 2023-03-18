@@ -60,6 +60,14 @@ app.delete("/movie/:id", (req, res) => __awaiter(void 0, void 0, void 0, functio
     yield movies_model_1.default.destroy({ where: { id } });
     return res.status(200).json(deletedMovie);
 }));
+//Get last Movie
+app.get("/lastMovie", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const lastMovie = yield movies_model_1.default.findOne({
+        order: [['createdAt', 'DESC']]
+    });
+    console.log(lastMovie);
+    return res.status(200).json(lastMovie);
+}));
 // Start express server and sync db
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
